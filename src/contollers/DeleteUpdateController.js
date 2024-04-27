@@ -1,4 +1,5 @@
-import Event from '../../model/event.js';
+import Event from '../../src/database/eventModel';
+
 const updateEventController = async (req, res) => {
     const { title, description, startTime, endTime, location } = req.body;
     try {

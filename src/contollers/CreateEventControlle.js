@@ -1,21 +1,22 @@
-import Event from '../../model/event.js';
+import Event from '../../src/database/eventModel';
 
 const createEventController = async (req, res) => {
   const { title, description, startTime, endTime, location } = req.body;
   try {
     const newEvent = await Event.create({ title, description, startTime, endTime, location });
     res.status(201).json({
-      message: "Event created successfully",
-      data: newEvent
+    message: "Event created successfully",
+    data: newEvent
     });
   } catch (error) {
     const messageContent = error.message;
     res.status(500).json({
-      error: "Server Error",
-      message: messageContent
+    error: "Server Error",
+    message: messageContent
     });
   }
 };
+
 const getEventController = async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
@@ -31,8 +32,8 @@ const getEventController = async (req, res) => {
   } catch (error) {
     const messageContent = error.message;
     res.status(500).json({
-      error: "Server Error",
-      message: messageContent
+    error: "Server Error",
+    message: messageContent
     });
   }
 };
@@ -41,14 +42,14 @@ const getAllEventsController = async (req, res) => {
   try {
     const events = await Event.find();
     res.status(200).json({
-      message: "All events retrieved successfully",
-      data: events
+    message: "All events retrieved successfully",
+    data: events
     });
   } catch (error) {
     const messageContent = error.message;
     res.status(500).json({
-      error: "Server Error",
-      message: messageContent
+    error: "Server Error",
+    message: messageContent
     });
   }
 };
